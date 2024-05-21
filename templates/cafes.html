@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Restaurants{% endblock %}
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+      <table class="table  text-light ">
+        <!-- We render a Bootstrap  Table that contains all the information from the cafe-data.csv file. -->
+
+        <!-- We iterate through the list of rows. -->
+        {% for row in cafes %}
+        <thead>
+        <tbody class="table-group-divider">
+
+          <tr>
+
+            <!-- We iterate over the rows to get the value of each column or individual data of the row-->
+            {% for object_data in row %}
+
+            <!-- We want to determine if the data is a link, in order to display the link properly on the page.-->
+                {% if object_data[0:4] == 'http' %}
+                     <th>
+
+                       <a href="{{ object_data }}">maps link</a>
+                      </th> 
+
+                {% else %}    
+
+                    <th scope="col">{{ object_data }}</th>
+                
+                {% endif %}
+
+            
+            {% endfor %}
+
+
+          </tr>
+        </tbody>
+
+        </thead>
+
+        {% endfor %}
+
+      </table>
+
+      <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
