@@ -91,14 +91,19 @@ def add_cafe():
             all_data_frame.to_csv('cafe-data.csv',  index=False)
             
             return redirect(url_for('cafes'))
+        
         except:
-            pass
-                
+            
+            
+            new_dataframe.to_csv('cafe-data.csv', index=False)
+            
+            return redirect(url_for('cafes'))    
    
     else:
         
         return render_template('add.html', form=form)
-
+        
+        
 
 
 @app.route('/cafes')
